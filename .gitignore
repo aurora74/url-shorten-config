@@ -1,0 +1,30 @@
+# Local secrets and credentials
+.env*
+!.env.example
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+*kubeconfig*
+.kube/
+
+# Local/generated state
+harness.db
+harness.db-*
+*.db
+*.db-*
+results.bin
+results.txt
+attack_targets.txt
+data.json
+read_scenario.json
+
+# VM/media artifacts
+*.qcow2
+*.img
+*.iso
+
+# Editor and OS files
+.DS_Store
+.idea/
+.vscode/
