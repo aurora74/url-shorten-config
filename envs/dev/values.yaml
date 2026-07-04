@@ -1,7 +1,7 @@
 frontend:
   image:
     repository: aurora74/url-shorten-frontend
-    tag: v0.0.7-phase9
+    tag: v0.0.8-final
   service:
     type: NodePort
     nodePort: 30080
@@ -12,7 +12,7 @@ frontend:
 api:
   image:
     repository: aurora74/url-shorten-api
-    tag: v0.0.7-phase9
+    tag: v0.0.8-final
   service:
     type: NodePort
     nodePort: 30081
@@ -33,7 +33,7 @@ api:
 backgroundWorker:
   image:
     repository: aurora74/url-shorten-worker
-    tag: v0.0.7-phase9
+    tag: v0.0.8-final
   secrets:
     urlDsn:
       name: url-shorten-dev-runtime
@@ -45,7 +45,7 @@ backgroundWorker:
 fraudWorker:
   image:
     repository: aurora74/url-shorten-fraud
-    tag: v0.0.7-phase9
+    tag: v0.0.8-final
   secrets:
     urlDsn:
       name: url-shorten-dev-runtime
