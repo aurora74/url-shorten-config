@@ -1,0 +1,80 @@
+frontend:
+  image:
+    repository: aurora74/url-shorten-frontend
+    tag: dev-placeholder
+  service:
+    type: NodePort
+    nodePort: 30080
+  runtimeConfig:
+    apiBaseUrl: http://url-shorten-api.dev.local
+    publicBaseUrl: http://url-shorten.dev.local
+
+api:
+  image:
+    repository: aurora74/url-shorten-api
+    tag: dev-placeholder
+  service:
+    type: NodePort
+    nodePort: 30081
+  env:
+    redisMode: single
+    redisAddrs: redis://url-shorten-redis:6379
+  secrets:
+    urlDsn:
+      name: url-shorten-dev-runtime
+      key: URL_DSN
+    riverDsn:
+      name: url-shorten-dev-runtime
+      key: RIVER_DSN
+    rabbitmqUrl:
+      name: url-shorten-dev-runtime
+      key: RABBITMQ_URL
+
+backgroundWorker:
+  image:
+    repository: aurora74/url-shorten-worker
+    tag: dev-placeholder
+  secrets:
+    urlDsn:
+      name: url-shorten-dev-runtime
+      key: URL_DSN
+    riverDsn:
+      name: url-shorten-dev-runtime
+      key: RIVER_DSN
+
+fraudWorker:
+  image:
+    repository: aurora74/url-shorten-fraud
+    tag: dev-placeholder
+  secrets:
+    urlDsn:
+      name: url-shorten-dev-runtime
+      key: URL_DSN
+    rabbitmqUrl:
+      name: url-shorten-dev-runtime
+      key: RABBITMQ_URL
+    virusTotalApiKey:
+      name: url-shorten-dev-runtime
+      key: VIRUSTOTAL_API_KEY
+
+dependencies:
+  redis:
+    enabled: false
+  postgresApp:
+    enabled: false
+    passwordSecret:
+      name: url-shorten-dev-dependencies
+      key: APP_POSTGRES_PASSWORD
+  postgresRiver:
+    enabled: false
+    passwordSecret:
+      name: url-shorten-dev-dependencies
+      key: RIVER_POSTGRES_PASSWORD
+  rabbitmq:
+    enabled: false
+    passwordSecret:
+      name: url-shorten-dev-dependencies
+      key: RABBITMQ_PASSWORD
+    erlangCookieSecret:
+      name: url-shorten-dev-dependencies
+      key: RABBITMQ_ERLANG_COOKIE

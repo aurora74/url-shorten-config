@@ -3,10 +3,23 @@
 !.env.example
 *.pem
 *.key
+*.crt
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.token
+*.secret
+*secret*.yaml
+*secret*.yml
+*secrets*.yaml
+*secrets*.yml
 id_rsa*
 id_ed25519*
 *kubeconfig*
 .kube/
+kubeconfig
+config
 
 # Local/generated state
 harness.db
