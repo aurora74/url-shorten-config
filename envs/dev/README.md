@@ -11,9 +11,16 @@ helm template url-shorten /home/aurora/Projects/url-shorten/deploy/helm/url-shor
   -f envs/dev/values.yaml
 ```
 
-The values intentionally keep the optional in-chart Redis, PostgreSQL, and
-RabbitMQ demo dependencies disabled. The application expects external dev
-services and pre-created Kubernetes Secrets.
+The dev values target the VDT demo cluster NodePorts:
+
+| Surface | URL |
+| --- | --- |
+| Frontend | `http://192.168.130.88:30080` |
+| API | `http://192.168.130.88:30081` |
+
+The optional in-chart Redis, PostgreSQL, and RabbitMQ demo dependencies are
+enabled for Phase 10 ArgoCD proof. The application still expects pre-created
+Kubernetes Secrets for runtime DSNs and dependency credentials.
 
 ## Required Secrets
 
@@ -27,8 +34,7 @@ workloads:
 | `url-shorten-dev-runtime` | `RABBITMQ_URL` |
 | `url-shorten-dev-runtime` | `VIRUSTOTAL_API_KEY` |
 
-Optional demo dependency gates remain disabled by default. If they are enabled
-for a local cluster, create:
+Optional demo dependency gates are enabled for the VDT demo cluster. Create:
 
 | Secret name | Key |
 | --- | --- |

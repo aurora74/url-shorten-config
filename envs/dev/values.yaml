@@ -6,8 +6,8 @@ frontend:
     type: NodePort
     nodePort: 30080
   runtimeConfig:
-    apiBaseUrl: http://url-shorten-api.dev.local
-    publicBaseUrl: http://url-shorten.dev.local
+    apiBaseUrl: http://192.168.130.88:30081
+    publicBaseUrl: http://192.168.130.88:30080
 
 api:
   image:
@@ -59,19 +59,19 @@ fraudWorker:
 
 dependencies:
   redis:
-    enabled: false
+    enabled: true
   postgresApp:
-    enabled: false
+    enabled: true
     passwordSecret:
       name: url-shorten-dev-dependencies
       key: APP_POSTGRES_PASSWORD
   postgresRiver:
-    enabled: false
+    enabled: true
     passwordSecret:
       name: url-shorten-dev-dependencies
       key: RIVER_POSTGRES_PASSWORD
   rabbitmq:
-    enabled: false
+    enabled: true
     passwordSecret:
       name: url-shorten-dev-dependencies
       key: RABBITMQ_PASSWORD
